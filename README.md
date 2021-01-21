@@ -1,1 +1,1 @@
-# statemachine
+# Sample state machine with TypeScript

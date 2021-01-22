@@ -14,7 +14,11 @@ The most important thing you can write Unit tests on this code with Jest test fr
 I tried to keep it simple. But briefly, I understood TypeScript is an awesome programming language which built on JavaScript.
 You can use it in your big projects with trust. It keeps your code clean, easy maintainable and testable.
 
+# Phone Call state handling
+In this example I defined my call management states and transitions in enums.
+Then I configured my state machine.
+Then in unit tests I executed state machine and fired with transitions. 
 
-
+![Sample State Machine Image](https://www.researchgate.net/profile/Keshav_Dahal/publication/226462294/figure/fig4/AS:302286770327553@1449082190385/The-telephone-system-state-machine-diagram.png)
 
 Sahin Deligoz

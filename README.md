@@ -1,6 +1,5 @@
 # Sample state machine with TypeScript
-# OOP, TDD
-# Unit tests with JEST
+# OOP, Unit tests with JEST
 The main purpose of this repository to learn and try out TypeScript capabilities. 
 In this example, I implemented a generic State Machine.
 You can use this generic state machine in your individual or commercial projects. Or only you can investigate to get some kind of idea. 

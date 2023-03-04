@@ -20,10 +20,14 @@ Then in unit tests I executed state machine and fired with transitions.
 As i said before this is a generic State Machine so you can define your enums for an other purposes. And  you can configure state machine as you wish. Then you can execute with transitions. 
 
 This is a similar design of my state machine. It is not exactly same but it is possible to this. 
-![Sample State Machine Image](https://www.researchgate.net/profile/Keshav_Dahal/publication/226462294/figure/fig4/AS:302286770327553@1449082190385/The-telephone-system-state-machine-diagram.png)
+![Sample State Machine Image](https://sparxsystems.com/images/screenshots/uml2_tutorial/sm01.GIF)
+
+# Traffic Light and Car State handling
+Same as mobile phone state 
+Cars are moving, stopping or being ready according traffic light colors respectively.
 
 
-Some steps for make up and running local dev environment.
+# Some steps for make up and running local dev environment.
 //install lite server an typescript with npm            npm install lite-server typescript --save-dev
 //install jest                                          npm i --save-dev @types/jest
 

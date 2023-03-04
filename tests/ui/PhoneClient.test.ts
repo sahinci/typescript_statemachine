@@ -1,10 +1,10 @@
 import { MobilePhoneClient } from '../../src/ui/MobilePhoneClient';
-import { IClient } from "../../src/ui/IClient";
-import { StateName } from '../../src/logic/enums/StateEnums';
-import { TransitionActionName } from '../../src/logic/enums/TransitionEnums';
+import { IClient } from "../../src/ui/IMobilePhoneClient";
+import { PhoneCallStateName } from '../../src/logic/enums/PhoneCallStateName';
+import { TransitionActionName } from '../../src/logic/enums/PhoneCallTransitionsEnum';
 
 
-let client: IClient<StateName, TransitionActionName>;
+let client: IClient<PhoneCallStateName, TransitionActionName>;
 beforeEach(() => {
     client = new MobilePhoneClient();
     client.populateSates();

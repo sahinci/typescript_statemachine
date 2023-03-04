@@ -1,19 +1,19 @@
 import { StateMachine } from "../logic/StateMachine.js";
 import { State } from "../logic/State.js";
-import { StateName } from "../logic/enums/StateEnums.js";
-import { TransitionActionName } from "../logic/enums/TransitionEnums.js";
+import { PhoneCallStateName } from "../logic/enums/PhoneCallStateName.js";
+import { TransitionActionName } from "../logic/enums/PhoneCallTransitionsEnum.js";
 import { TransitionBuilder } from "../logic/TransitionBuilder.js";
-import { IClient } from "./IClient.js";
+import { IClient as IMobilePhoneClient } from "./IMobilePhoneClient.js";
 
-export class MobilePhoneClient implements IClient<StateName,TransitionActionName> {
+export class MobilePhoneClient implements IMobilePhoneClient<PhoneCallStateName, TransitionActionName> {
 
 
-  private stateMachine = new StateMachine<StateName, TransitionActionName>();
+  private stateMachine = new StateMachine<PhoneCallStateName, TransitionActionName>();
 
   populateSates() {
-    for (let state in StateName) {
+    for (let state in PhoneCallStateName) {
       if (Number(state) || state == '0') {
-        let stateItem = new State<StateName, TransitionActionName>();
+        let stateItem = new State<PhoneCallStateName, TransitionActionName>();
         stateItem.stateName = state.toString();
         this.stateMachine.populateStates(stateItem);
       }
@@ -23,34 +23,34 @@ export class MobilePhoneClient implements IClient<StateName,TransitionActionName
   }
 
   private setInitialState() {
-    let iniState: State<StateName, TransitionActionName> = new State<StateName, TransitionActionName>();
+    let iniState: State<PhoneCallStateName, TransitionActionName> = new State<PhoneCallStateName, TransitionActionName>();
     iniState.onEntry(() => { this.showWaitingCallUi() });
     iniState.onExit(() => { this.hideWaitingCallUi() });
-    iniState.stateName = StateName.AvailableForNewCall.toString();
+    iniState.stateName = PhoneCallStateName.AvailableForNewCall.toString();
     this.stateMachine.defineInitialState(iniState);
   }
 
   configureStateMachine() {
 
-    this.stateMachine.configure(StateName.AvailableForNewCall)
+    this.stateMachine.configure(PhoneCallStateName.AvailableForNewCall)
       .onEntry(() => { this.showWaitingCallUi() })
       .onExit(() => { this.hideRingingCallUi() })
-      .permit(new TransitionBuilder<StateName, TransitionActionName>()
-        .setTargetTransition(TransitionActionName.CallReachedStartRinging).setNextState(StateName.Ringing).build());
+      .permit(new TransitionBuilder<PhoneCallStateName, TransitionActionName>()
+        .setTargetTransition(TransitionActionName.CallReachedStartRinging).setNextState(PhoneCallStateName.Ringing).build());
 
-    this.stateMachine.configure(StateName.Ringing)
+    this.stateMachine.configure(PhoneCallStateName.Ringing)
       .onEntry(() => { this.showRingingCallUi() })
       .onExit(() => { this.hideRingingCallUi() })
-      .permit(new TransitionBuilder<StateName, TransitionActionName>()
-        .setTargetTransition(TransitionActionName.ClickedAnswerCall).setNextState(StateName.Answered).build())
-      .permit(new TransitionBuilder<StateName, TransitionActionName>()
-        .setTargetTransition(TransitionActionName.ClickedReject).setNextState(StateName.AvailableForNewCall).build());
+      .permit(new TransitionBuilder<PhoneCallStateName, TransitionActionName>()
+        .setTargetTransition(TransitionActionName.ClickedAnswerCall).setNextState(PhoneCallStateName.Answered).build())
+      .permit(new TransitionBuilder<PhoneCallStateName, TransitionActionName>()
+        .setTargetTransition(TransitionActionName.ClickedReject).setNextState(PhoneCallStateName.AvailableForNewCall).build());
 
-    this.stateMachine.configure(StateName.Answered)
+    this.stateMachine.configure(PhoneCallStateName.Answered)
       .onEntry(() => { this.showWaitingCallUi() })
       .onExit(() => { this.hideRingingCallUi() })
-      .permit(new TransitionBuilder<StateName, TransitionActionName>()
-        .setTargetTransition(TransitionActionName.ClickedTerminateCall).setNextState(StateName.AvailableForNewCall).build());
+      .permit(new TransitionBuilder<PhoneCallStateName, TransitionActionName>()
+        .setTargetTransition(TransitionActionName.ClickedTerminateCall).setNextState(PhoneCallStateName.AvailableForNewCall).build());
   }
 
   // fireRinging() {
@@ -65,7 +65,7 @@ export class MobilePhoneClient implements IClient<StateName,TransitionActionName
   calculate(number1: number, number2: number): number {
     return number1 + number2;
   }
-  fire(transitionName: TransitionActionName): State<StateName, TransitionActionName> {
+  fire(transitionName: TransitionActionName): State<PhoneCallStateName, TransitionActionName> {
     return this.stateMachine.fire(transitionName)
   }
 

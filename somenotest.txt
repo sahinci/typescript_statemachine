@@ -1,0 +1,10 @@
+//install lite server an typescript with npm            npm install lite-server typescript --save-dev
+//install jest                                          npm i --save-dev @types/jest
+
+
+start debugging
+npx lite-server -----this will start a server which run on localhost:3000 on browser. You can debug only via 
+browser not on the vscde 
+
+debug in vs code paste this in package.json file // "type": "module"  ---use this only if you want to start debugger via vscode, but it is not related with debugger will not behave like somethnk trigged via browser. Only entry point debugger file and callers trigging.
+be aware If you use this type:module then jest unit tests will not run. 

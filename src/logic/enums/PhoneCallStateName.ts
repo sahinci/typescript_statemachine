@@ -1,5 +1,5 @@
 
-  export enum StateName {
+  export enum PhoneCallStateName {
     AvailableForNewCall,
     Ringing,
     Answered,

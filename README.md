@@ -22,5 +22,22 @@ As i said before this is a generic State Machine so you can define your enums fo
 This is a similar design of my state machine. It is not exactly same but it is possible to this. 
 ![Sample State Machine Image](https://www.researchgate.net/profile/Keshav_Dahal/publication/226462294/figure/fig4/AS:302286770327553@1449082190385/The-telephone-system-state-machine-diagram.png)
 
+
+Some steps for make up and running local dev environment.
+//install lite server an typescript with npm            npm install lite-server typescript --save-dev
+//install jest                                          npm i --save-dev @types/jest
+
+
+start debugging
+npx lite-server -----this will start a server which run on localhost:3000 on browser. You can debug only via 
+browser not on the vscde 
+
+For debug in vscode: paste this in package.json file 
+// "type": "module"  
+use this only if you want to start debugger via vscode, but it is not related with debugger will not behave like something trigged via browser. 
+Only entry point debugger file of project and callers trigging(in this case app.ts).
+Be aware If you use this type:module then jest unit tests will not run. That is something that I need investigate.  
+
+
 Happy Coding :)
 Sahin Deligoz

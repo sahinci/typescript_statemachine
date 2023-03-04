@@ -1,14 +1,21 @@
-import { StateName } from "./logic/enums/StateEnums.js";
-import { TransitionActionName } from "./logic/enums/TransitionEnums.js";
+import { CarState } from "./logic/enums/CarState.js";
+import { PhoneCallStateName } from "./logic/enums/PhoneCallStateName.js";
+import { TransitionActionName as PhoneCallTransitionEnum } from "./logic/enums/PhoneCallTransitionsEnum.js";
+import { TrafficLightTransition } from "./logic/enums/TrafficLightTransition.js";
 import { ClientFactory } from "./ui/ClientFactory.js";
-import { IClient } from "./ui/IClient.js";
+import { IClient as IMobilePhoneClient } from "./ui/IMobilePhoneClient.js";
+import { ITraffic } from "./ui/ITraffic.js";
 
-let client: IClient<StateName,TransitionActionName>;
 
-client = ClientFactory.createClient();
-client.populateSates();
-client.configureStateMachine();
-client.fire(TransitionActionName.CallReachedStartRinging);
-// client.fireRinging();
-// client.fireAnswer();
+let phoneClient: IMobilePhoneClient<PhoneCallStateName, PhoneCallTransitionEnum>;
+phoneClient = ClientFactory.createClient();
+phoneClient.populateSates();
+phoneClient.configureStateMachine();
+phoneClient.fire(PhoneCallTransitionEnum.CallReachedStartRinging);
 
+
+let trafficClient: ITraffic<CarState, TrafficLightTransition>;
+trafficClient = ClientFactory.createTrafficClient();
+trafficClient.populateSates();
+trafficClient.configureStateMachine();
+trafficClient.fire(TrafficLightTransition.Yellow);

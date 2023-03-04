@@ -18,7 +18,7 @@ export class StateMachine<TState, TTransition> {
     return this.stateList.find(p => p.stateName == state.toString());
   }
 
-  
+
   fire(transition: TTransition): State<TState, TTransition> {
     let trans = this.stateList.find(p => p.stateName.toString() == this.currentState.stateName.toString())
       .transitions.find(p => p.getTargetTransition == transition);
